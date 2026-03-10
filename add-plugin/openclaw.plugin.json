@@ -1,0 +1,7 @@
+{
+  "id": "add-plugin",
+  "name": "加法插件",
+  "description": "执行加法运算",
+  "version": "1.0.0",
+  "author": "OpenClaw User"
+}

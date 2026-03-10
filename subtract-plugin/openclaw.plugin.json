@@ -1,0 +1,7 @@
+{
+  "id": "subtract-plugin",
+  "name": "减法插件",
+  "description": "执行减法运算",
+  "version": "1.0.0",
+  "author": "OpenClaw User"
+}
