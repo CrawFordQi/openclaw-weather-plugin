@@ -1,0 +1,23 @@
+{
+  "id": "weather-plugin",
+  "name": "天气查询插件",
+  "description": "查询今天的天气信息",
+  "version": "1.0.0",
+  "author": "OpenClaw User",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "apiKey": {
+        "type": "string",
+        "description": "OpenWeatherMap API密钥（免费获取）",
+        "default": ""
+      },
+      "defaultCity": {
+        "type": "string",
+        "description": "默认城市",
+        "default": "北京"
+      }
+    }
+  }
+}
