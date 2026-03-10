@@ -4,5 +4,9 @@
   "description": "执行加法运算",
   "version": "1.0.0",
   "author": "OpenClaw User",
-  "configSchema": {}
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
 }
