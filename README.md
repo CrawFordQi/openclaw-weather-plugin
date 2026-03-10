@@ -1,11 +1,12 @@
-# 天气查询插件
+# 工作总结插件
 
-OpenClaw的天气查询插件，用于查询今天的天气信息。
+OpenClaw的工作总结插件，用于将详细的工作汇报总结为周例会可汇报的精简内容。
 
 ## 功能
 
-- 查询指定城市的天气信息
-- 支持默认城市设置
+- 将详细工作汇报总结为周例会可汇报的精简内容
+- 自动提取工作完成情况、遇到的问题和下周计划
+- 支持自定义时间范围
 - 提供命令行接口
 - 支持聊天界面集成
 
@@ -28,131 +29,79 @@ OpenClaw的天气查询插件，用于查询今天的天气信息。
 
 ```json
 "plugins": {
-  "weather-plugin": {
-    "apiKey": "YOUR_OPENWEATHERMAP_API_KEY",
-    "defaultCity": "北京"
+  "summary-plugin": {
+    "defaultTimeRange": "本周"
   }
 }
 ```
-
-## 获取API密钥
-
-OpenWeatherMap提供免费的API密钥，获取步骤如下：
-
-1. 访问 [OpenWeatherMap](https://openweathermap.org/)
-2. 点击右上角的"Sign Up"注册账号
-3. 登录后，进入 [API Keys](https://home.openweathermap.org/api_keys) 页面
-4. 在"Create key"部分输入一个名称（例如"OpenClaw"）
-5. 点击"Generate"按钮生成API密钥
-6. 将生成的API密钥填入配置文件中
-
-**注意**：免费API密钥每天有60次调用限制，足够个人使用。
 
 ## 使用方法
 
 ### 聊天界面
 
-在聊天界面中发送包含"天气"关键词的消息，例如：
-- "今天天气怎么样？"
-- "北京天气"
-- "上海天气如何？"
+在聊天界面中发送包含"总结"和"工作"关键词的消息，例如：
+- "请总结文件 /path/to/report.md 的内容"
+- "总结工作汇报文件 /path/to/report.md，生成第3周的周例会汇报材料"
 
 ### 命令行
 
-使用 `weather` 命令查询天气：
+使用 `summary` 命令总结工作汇报：
 
 ```
-weather [城市]
+summary <file_path> [time_range]
 ```
 
 例如：
-- `weather` - 查询默认城市的天气
-- `weather 上海` - 查询上海的天气
+- `summary /path/to/report.md` - 总结文件内容，使用默认时间范围
+- `summary /path/to/report.md 第3周` - 总结文件内容，指定时间范围为第3周
 
 ## 示例
 
-**输入：**
+### 输入：
 ```
-北京天气
-```
-
-**输出：**
-```
-🌤️ 北京今天的天气：
-温度：22.5°C
-天气：晴
-湿度：45%
-风速：3.2m/s
+请总结文件 /Users/liujian/IdeaProjects/OpenClaw/工作总结.md 的内容，生成第3周的周例会汇报材料。
 ```
 
-## 支持的城市
+### 输出：
+```markdown
+# 第3周工作汇报
 
-目前支持以下城市：
-- 北京
-- 上海
-- 广州
-- 深圳
-- 杭州
-- 成都
-- 武汉
-- 西安
-- 南京
-- 重庆
+## 工作完成情况
+- 项目1：分析原始材料，读取并分析员工的工作汇报内容
+- 项目2：提取关键信息，识别主要工作项目、完成情况、遇到的问题和解决措施
+- 项目3：精简总结，将详细内容浓缩为简短、专业的汇报要点
+- 项目4：格式化输出，按照周例会汇报的格式组织内容
 
-## 上传到GitHub的步骤
+## 遇到的问题
+- 问题1：暂无遇到的问题
 
-1. **创建GitHub仓库**
-   - 登录GitHub账号
-   - 点击右上角的"+"按钮，选择"New repository"
-   - 输入仓库名称，例如 "openclaw-weather-plugin"
-   - 选择公开或私有
-   - 点击"Create repository"
-
-2. **初始化本地仓库**
-   ```bash
-   cd weather-plugin
-   git init
-   git add .
-   git commit -m "Initial commit"
-   ```
-
-3. **关联远程仓库**
-   ```bash
-   git remote add origin https://github.com/your-username/openclaw-weather-plugin.git
-   ```
-
-4. **推送到GitHub**
-   ```bash
-   git push -u origin main
-   ```
-
-5. **在OpenClaw中安装**
-   - 打开OpenClaw的插件管理页面
-   - 点击"添加市场"
-   - 输入GitHub仓库地址：`your-username/openclaw-weather-plugin`
-   - 点击"提交"
-   - 找到天气查询插件并点击安装
+## 下周计划
+- 计划1：周例会汇报准备
+- 计划2：月度工作总结提炼
+- 计划3：向上级汇报材料整理
+- 计划4：团队工作进展梳理
+```
 
 ## 技术实现
 
-本插件使用OpenWeatherMap的免费API：
-- API地址：`https://api.openweathermap.org/data/2.5/weather`
-- 数据格式：JSON
-- 调用频率：免费API每天60次调用限制
+本插件使用Node.js内置的文件系统模块读取和分析工作汇报文件：
+- 自动识别工作完成情况、遇到的问题和下周计划
+- 智能提取关键信息并精简内容
+- 按照周例会汇报的格式组织输出
 
 ## 注意事项
 
-- 需要有效的OpenWeatherMap API密钥
-- API密钥可以免费获取，每天有60次调用限制
-- 如需添加更多城市支持，可修改 `index.js` 文件中的城市匹配正则表达式
+- 工作汇报文件需要是Markdown格式
+- 建议按照"工作完成情况"、"遇到的问题"、"下周计划"的结构组织内容
+- 插件会自动识别列表形式的内容，建议使用列表格式编写工作汇报
+- 内容会被精简为2-3句话，确保汇报简洁明了
 
 ## 故障排除
 
-1. **API密钥错误**：确保输入了正确的OpenWeatherMap API密钥
-2. **网络问题**：检查网络连接是否正常
-3. **城市未找到**：确保输入的城市名称在支持列表中
-4. **插件未加载**：重启OpenClaw后再试
-5. **API调用超限**：免费API每天有60次调用限制，超过后需要等待24小时
+1. **文件不存在**：确保提供的文件路径正确
+2. **内容识别失败**：检查工作汇报文件的格式，确保包含明确的章节标题
+3. **插件未加载**：重启OpenClaw后再试
+4. **总结内容为空**：检查工作汇报文件是否包含足够的内容
 
 ## 许可证
 

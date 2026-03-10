@@ -1,22 +1,17 @@
 {
-  "id": "weather-plugin",
-  "name": "天气查询插件",
-  "description": "查询今天的天气信息",
+  "id": "summary-plugin",
+  "name": "工作总结插件",
+  "description": "将详细工作汇报总结为周例会可汇报的精简内容",
   "version": "1.0.0",
   "author": "OpenClaw User",
   "configSchema": {
     "type": "object",
     "additionalProperties": false,
     "properties": {
-      "apiKey": {
+      "defaultTimeRange": {
         "type": "string",
-        "description": "OpenWeatherMap API密钥（免费获取）",
-        "default": ""
-      },
-      "defaultCity": {
-        "type": "string",
-        "description": "默认城市",
-        "default": "北京"
+        "description": "默认时间范围",
+        "default": "本周"
       }
     }
   }
